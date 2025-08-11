@@ -25,7 +25,7 @@ let showTransactions = () => {
             </td>
             <td>${el.afterBalance}</td>
             <td>
-                ${index == trasnactions.length - 1 ? `<button class="btn btn-danger">Remove Transaction</button>` : `----`}
+                ${index == trasnactions.length - 1 ? `<button onclick="removeLastTransactions(${index})" class="btn btn-danger">Remove Transaction</button>` : `----`}
             </td>
         </tr>
         `;
@@ -75,4 +75,39 @@ let withdraw = () => {
   } else {
     alert('Please Put Valid Value');
   }
+};
+
+let removeLastTransactions = (index) => {
+  // let beforeBalance = trasnactions[index].beforeBalance;
+  let beforeBalance = trasnactions[trasnactions.length - 1].beforeBalance;
+  balance = beforeBalance;
+  // trasnactions.pop();
+  trasnactions.splice(index, 1);
+  saveDataToLocalStora();
+  showBalance();
+  showTransactions();
+};
+
+let showIndex = false;
+
+let showPassword = () => {
+  let passwordInput = document.querySelector('#passwordInput');
+  if (showIndex) {
+    passwordInput.setAttribute('type', 'password');
+    showIndex = false;
+  } else {
+    passwordInput.setAttribute('type', 'text');
+    showIndex = true;
+  }
+};
+
+// DOM => document
+// BOM Browser Object Model => window
+// localStorage - session Storage - cookies
+// control Browser
+// navigator
+
+let login = () => {
+  // Check
+  window.location.href = 'https://www.google.com';
 };
